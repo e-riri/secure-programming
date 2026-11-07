@@ -10,24 +10,39 @@ The application will provide basic file and directory operations within a config
 
 The application will run as a normal unprivileged user and will not require root or setuid privileges.
 
-## Planned Commands
+## Checkpoint 2 Commands
 
 ```text
+setup
 login
-list
+logout
+list [directory]
 read <file>
-copy <source> <destination>
-move <source> <destination>
-delete <file>
 create <file>
 mkdir <directory>
-logout
+delete <file>
+encrypt <source> <destination>
+decrypt <source> <destination>
 help
+exit
 ```
+
+The account is local to the current working directory. Run `setup` once, then
+`login`; managed files live in `./managed`. Paths are relative to that directory,
+and double quotes can be used around paths containing spaces. File creation and
+encryption/decryption do not overwrite existing destinations.
+
+Encryption uses OpenSSL AES-256-GCM. Each encrypted file contains a random salt,
+nonce, and authentication tag; its key is derived from the logged-in password
+using PBKDF2-HMAC-SHA256. Password verification data is stored in
+`.file-manager.auth` with owner-only permissions, never as plaintext.
+
+Copy and move are not part of this checkpoint implementation.
 
 ## Build and Run
 
-The project will use GCC and Make.
+The project uses GCC, Make, and the OpenSSL development headers/library. On
+Debian or Ubuntu, install them with `sudo apt install build-essential libssl-dev`.
 
 Build:
 
@@ -41,7 +56,15 @@ Run:
 ./file-manager
 ```
 
-The exact build and run commands may be updated as implementation progresses.
+Run the application from the directory in which its managed files should live:
+
+```bash
+./file-manager
+```
+
+At the prompt, use `setup` to create the account and `login` to authenticate.
+`make clean` removes the compiled executable; it does not remove account data or
+managed files.
 
 ## Documentation
 
