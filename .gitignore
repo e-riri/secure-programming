@@ -1,0 +1,13 @@
+# Compiled program
+/file-manager
+
+# Local authentication data
+/.file-manager.auth
+
+# Managed files and test data
+/managed/
+
+# Compiler and debugging files
+*.o
+*.out
+*.core
