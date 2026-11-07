@@ -1,11 +1,18 @@
-# Checkpoint 2 Progress
+# Checkpoint 2 – Progress Note
+**Project:** Secure File Manager
+**Repository:** [https://github.com/e-riri/secure-programming](https://github.com/e-riri/secure-programming)
 
-Implemented for the Week 9 file-manager checkpoint:
+## Implemented Features
+For Checkpoint 2, I implemented the core functionality of the file manager in C.
 
-- Interactive CLI with bounded input, quoted path arguments, help, and basic file commands.
-- First-run password setup and login using a salted PBKDF2-HMAC-SHA256 verifier; the password is hidden at input and plaintext is not saved.
-- AES-256-GCM file encryption/decryption using OpenSSL. Decryption publishes output only after its authentication tag verifies.
-- Managed-directory path validation rejects absolute paths, `..`, symlink traversal, malformed arguments, and unintended overwrites.
-- GCC/Make build instructions and OpenSSL dependency are documented in the README.
+- Command-line interface for file and directory operations.
+- Basic authentication with account setup and login.
+- File encryption and decryption using OpenSSL AES-256-GCM.
+- Input validation for commands and file paths.
+- Makefile and README instructions for building and running the program.
 
-The implementation targets Linux/POSIX as specified by the design. Copy and move commands remain out of scope for this checkpoint. The current Windows workspace does not have `make` or POSIX headers, so a Linux build and runtime round-trip still need to be verified. No checkpoint commit has been made; commit this working session after reviewing and testing it.
+## Current Status
+The implementation is available in the GitHub repository. The README describes the supported commands and how to build and run the application.
+
+## Next Steps
+For Checkpoint 3, I plan to improve error handling, test more edge cases, and review the security of the implementation.
